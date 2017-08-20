@@ -1,0 +1,3 @@
+
+class WordFactory
+end
