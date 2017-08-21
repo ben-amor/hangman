@@ -12,7 +12,7 @@ class GuessResponseFactory
       when game_state.characters_guessed.include?(character_input)
         GuessResponse.new("You've already guessed '#{character_input}'", false, false)
       when game_state.current_word.downcase.include?(character_input.downcase)
-        GuessResponse.new("'#{character_input}' appears in the word", false, true)
+        GuessResponse.new("'#{character_input}' appears in the word", true, false)
       else
         GuessResponse.new("'#{character_input}' doesn't appear in the word", true, true)
     end

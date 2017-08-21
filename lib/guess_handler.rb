@@ -1,21 +1,26 @@
 
 class GuessHandler
-  def initialize(guess_response_factory, word_factory)
+  def initialize(guess_response_factory, completeness_calculator)
 
     @guess_response_factory = guess_response_factory
-    @word_factory = word_factory
+    @completeness_calculator = completeness_calculator
   end
 
   def apply_guess_to_game_state(character_input, game_state)
 
-    if character_input == Constants::QUIT
-      game_state.game_status = GamesStatus::LOST
+    guess_response = @guess_response_factory.get_response_to_guess(character_input, game_state)
+
+    game_state.most_recent_message = guess_response.message
+
+    if guess_response.cost_a_life
+      game_state.lives_remaining = game_state.lives_remaining - 1
     end
 
-    if character_input == Constants::NEW_GAME
-      game_state = GameState.new(@word_factory.get_word)
+    if guess_response.is_valid
+      game_state.characters_guessed << character_input
     end
-
+    
+    game_state.game_status = @completeness_calculator.recalculate_game_status(game_state)
 
   end
 

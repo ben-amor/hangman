@@ -1,17 +1,18 @@
 
 class GameState
 
-  NOT_STARTED = 1
-  IN_PROGRESS = 2
-  WON = 3
-  LOST = 4
+  IN_PROGRESS = 1
+  WON = 2
+  LOST = 3
 
   def initialize(current_word)
-    @game_status = NOT_STARTED
+    @game_status = IN_PROGRESS
     @current_word = current_word
+    @characters_guessed = Array.new
+    @lives_remaining = 10
+    @most_recent_message = ''
   end
 
-  @game_status
 
-  attr_reader :game_status
+  attr_accessor :game_status, :characters_guessed, :current_word, :lives_remaining, :most_recent_message
 end
