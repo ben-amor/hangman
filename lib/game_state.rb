@@ -6,8 +6,9 @@ class GameState
   WON = 3
   LOST = 4
 
-  def initialize
+  def initialize(current_word)
     @game_status = NOT_STARTED
+    @current_word = current_word
   end
 
   @game_status

@@ -1,6 +1,6 @@
 require 'guess_response'
 
-class GuessHandler
+class GuessResponseFactory
   def initialize(guess_validator)
     @guess_validator = guess_validator
   end
