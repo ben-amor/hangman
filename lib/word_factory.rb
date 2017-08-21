@@ -2,7 +2,6 @@ require 'random-word'
 
 class WordFactory
   def get_word
-    'hello'
-    # RandomWord.nouns.next
+    RandomWord.nouns.next
   end
 end

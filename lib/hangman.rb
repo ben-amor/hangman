@@ -6,7 +6,7 @@ require 'word_factory'
 require 'guess_handler'
 require 'guess_response_factory'
 require 'guess_validator'
-require 'completeness_calculator'
+require 'game_status_calculator'
 
 module Hangman
   game = Game.new(UserInput.new,
@@ -14,7 +14,7 @@ module Hangman
                   GuessHandler.new(
                       GuessResponseFactory.new(
                           GuessValidator.new),
-                      CompletenessCalculator.new),
+                      GameStatusCalculator.new),
                   WordFactory.new)
   game.run
 end

@@ -1,6 +1,6 @@
 
-class CompletenessCalculator
-  def recalculate_game_status(game_state)
+class GameStatusCalculator
+  def calculate_game_status(game_state)
 
     case
       when game_state.lives_remaining == 0

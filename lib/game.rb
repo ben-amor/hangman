@@ -1,3 +1,4 @@
+require 'flow_of_control_constants'
 require 'game_state'
 require 'guess_handler'
 
@@ -13,18 +14,18 @@ class Game
 
   def run
 
-    @screen_renderer.render_to_screen(@game_state)
+    @screen_renderer.render_to_screen(@game_state, '')
     character_input = @user_input.get_input_from_user
 
-    while character_input != Constants::QUIT
+    while character_input != FlowOfControlConstants::QUIT
 
-      if character_input == Constants::NEW_GAME
+      if character_input == FlowOfControlConstants::NEW_GAME
         @game_state = GameState.new(@word_factory.get_word)
       end
 
       @guess_handler.apply_guess_to_game_state(character_input, @game_state)
 
-      @screen_renderer.render_to_screen(@game_state)
+      @screen_renderer.render_to_screen(@game_state, character_input)
 
       character_input = @user_input.get_input_from_user
 

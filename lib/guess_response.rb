@@ -1,15 +1,21 @@
 
 class GuessResponse
-  def initialize(message, is_valid, cost_a_life)
 
-    @message = message
+  INVALID_INPUT = 1
+  ALREADY_GUESSED = 2
+  HIT = 3
+  MISS = 4
+
+  def initialize(response_type, is_valid, cost_a_life)
+
+    @response_type = response_type
     @is_valid = is_valid
     @cost_a_life = cost_a_life
   end
 
   @cost_a_life
   @is_valid
-  @message
+  @response_type
 
-  attr_reader :cost_a_life, :is_valid, :message
+  attr_reader :cost_a_life, :is_valid, :response_type
 end

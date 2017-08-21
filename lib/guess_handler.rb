@@ -10,7 +10,7 @@ class GuessHandler
 
     guess_response = @guess_response_factory.get_response_to_guess(character_input, game_state)
 
-    game_state.most_recent_message = guess_response.message
+    game_state.most_recent_response_type = guess_response.response_type
 
     if guess_response.cost_a_life
       game_state.lives_remaining = game_state.lives_remaining - 1
@@ -20,7 +20,7 @@ class GuessHandler
       game_state.characters_guessed << character_input
     end
     
-    game_state.game_status = @completeness_calculator.recalculate_game_status(game_state)
+    game_state.game_status = @completeness_calculator.calculate_game_status(game_state)
 
   end
 
