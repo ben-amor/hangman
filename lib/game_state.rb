@@ -1,9 +1,9 @@
 
 class GameState
 
-  IN_PROGRESS=1
-  WON=2
-  LOST=3
+  IN_PROGRESS = 1
+  WON = 2
+  LOST = 3
 
   def initialize(current_word)
     @game_status = IN_PROGRESS
