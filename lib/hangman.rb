@@ -1,5 +1,9 @@
 require "hangman/version"
+require 'game'
+require 'user_input'
+require 'screen_renderer'
 
 module Hangman
-  # Your code goes here...
+  game = Game.new(UserInput.new, ScreenRenderer.new)
+  game.run
 end

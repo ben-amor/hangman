@@ -4,6 +4,7 @@ class GuessHandler
   def initialize(guess_validator)
     @guess_validator = guess_validator
   end
+
   def get_response_to_guess(character_input, game_state)
     case
       when !@guess_validator.is_valid_input(character_input)
