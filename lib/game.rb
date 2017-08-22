@@ -17,6 +17,7 @@ class Game
     @screen_renderer.render_to_screen(@game_state, '')
     character_input = @user_input.get_input_from_user
 
+    # TODO move flow of control out to a service? Bit of state on the Game class?
     while character_input != FlowOfControlConstants::QUIT
 
       if character_input == FlowOfControlConstants::NEW_GAME

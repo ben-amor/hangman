@@ -9,7 +9,7 @@ class ScreenRenderer
     puts "#{FlowOfControlConstants::QUIT} to quit"
 
     case game_state.game_status
-      when GameState::IN_PROGRESS
+      when :in_progress
         message = @@response_messages[game_state.most_recent_response_type]
         puts message % most_recent_guess if message
 
