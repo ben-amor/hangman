@@ -1,9 +1,19 @@
 require 'rspec'
+require 'game_state'
 
-describe 'My behaviour' do
+describe 'GameState' do
 
-  it 'should do something' do
+  it 'should calculate lives remaining correctly' do
 
-    true.should == false
+    # Arrange
+    sut = GameState.new('hello')
+    sut.add_guess_if_guess_is_valid('a')
+
+    # Act
+    result = sut.lives_remaining
+
+    # Assert
+    expect(result).to eq(9)
+
+    end
   end
-end

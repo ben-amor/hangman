@@ -1,5 +1,3 @@
-require 'guess_response'
-
 class GuessResponseFactory
   def initialize(guess_validator)
     @guess_validator = guess_validator
@@ -8,13 +6,13 @@ class GuessResponseFactory
   def get_response_to_guess(character_input, game_state)
     case
       when !@guess_validator.is_valid_input(character_input)
-        GuessResponse.new(GuessResponse::INVALID_INPUT, false, false)
+        :invalid_input
       when game_state.characters_guessed.include?(character_input)
-        GuessResponse.new(GuessResponse::ALREADY_GUESSED, false, false)
+        :already_guessed
       when game_state.current_word.downcase.include?(character_input.downcase)
-        GuessResponse.new(GuessResponse::HIT, true, false)
+        :hit
       else
-        GuessResponse.new(GuessResponse::MISS, true, true)
+        :miss
     end
 
   end
