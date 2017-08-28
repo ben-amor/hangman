@@ -12,6 +12,9 @@ class Game
     @guess_validator = guess_validator
   end
 
+  NEW_GAME = '1'.freeze
+  QUIT = '2'.freeze
+
   def run
 
     @screen_renderer.render_to_screen(@game_state, '', nil)
@@ -32,10 +35,10 @@ class Game
   end
 
   def user_wants_to_quit(character_input)
-    character_input == FlowOfControlConstants::QUIT
+    character_input == QUIT
   end
 
   def user_wants_a_new_game(character_input)
-    character_input == FlowOfControlConstants::NEW_GAME
+    character_input == NEW_GAME
   end
 end

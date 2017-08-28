@@ -6,9 +6,8 @@ class GameState
     @characters_guessed = Array.new
   end
 
-
-  def add_guess_if_guess_is_valid(character_guessed, guess_response)
-    characters_guessed << character_guessed if is_valid_response(guess_response)
+  def add_guess(character_guessed)
+    characters_guessed << character_guessed
   end
 
   def lives_remaining
@@ -29,10 +28,6 @@ class GameState
   attr_reader :current_word, :characters_guessed
 
   private
-
-  def is_valid_response(guess_response)
-    [:hit, :miss].include?(guess_response)
-  end
 
   STARTING_NUMBER_OF_LIVES = 10
 end

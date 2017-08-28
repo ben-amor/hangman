@@ -10,13 +10,19 @@ class HandleTurn
     @character_input = character_input
   end
 
-  def call()
+  def call
 
     guess_response = GetResponseToGuess.new(@guess_validator, @character_input, @game_state).call
 
-    @game_state.add_guess_if_guess_is_valid(@character_input, guess_response)
+    @game_state.add_guess(@character_input, guess_response) if is_valid_response(guess_response)
 
     @screen_renderer.render_to_screen(@game_state, @character_input, guess_response)
 
+  end
+
+  private
+
+  def is_valid_response(guess_response)
+    [:hit, :miss].include?(guess_response)
   end
 end

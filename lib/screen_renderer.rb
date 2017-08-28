@@ -4,8 +4,8 @@ require 'game_state'
 class ScreenRenderer
   def render_to_screen(game_state, most_recent_guess, most_recent_response_type)
 
-    puts "#{FlowOfControlConstants::NEW_GAME} for new game"
-    puts "#{FlowOfControlConstants::QUIT} to quit"
+    puts "#{Game::NEW_GAME} for new game"
+    puts "#{Game::QUIT} to quit"
 
     case game_state.game_status
       when :in_progress

@@ -1,19 +1,17 @@
 require 'rspec'
 require 'game_state'
 
-describe 'GameState' do
+describe GameState do
+  let (:current_word) { 'hello' }
+
+  subject(:game_state) { described_class.new(current_word) }
+
+  before do
+    game_state.add_guess('a')
+  end
 
   it 'should calculate lives remaining correctly' do
 
-    # Arrange
-    sut = GameState.new('hello')
-    sut.add_guess_if_guess_is_valid('a')
-
-    # Act
-    result = sut.lives_remaining
-
-    # Assert
-    expect(result).to eq(9)
-
-    end
+    expect(game_state.lives_remaining).to eq(9)
   end
+end
