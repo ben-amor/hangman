@@ -5,6 +5,6 @@ class GuessValidator
       return false
     end
 
-    return /[A-Za-z]/.match(character_input)
+    return /[A-Za-z .,!?]/.match(character_input) != nil
   end
 end
