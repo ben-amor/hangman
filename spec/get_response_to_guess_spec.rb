@@ -1,4 +1,4 @@
-require 'rspec'
+require 'spec_helper'
 require 'get_response_to_guess'
 require 'game_state'
 require 'guess_validator'
@@ -8,7 +8,7 @@ RSpec.describe GetResponseToGuess do
   let(:guess_validator) { instance_double(GuessValidator, :is_valid_input => is_valid_input) }
   let(:mock_game_state) { instance_double(GameState, :characters_guessed => characters_guessed, :current_word => 'Lorem') }
 
-  let(:response_message){get_response_to_guess.call}
+  let(:response_message) { get_response_to_guess.call }
 
   subject(:get_response_to_guess) { described_class.new(guess_validator, character_input, game_state) }
 
@@ -34,26 +34,27 @@ RSpec.describe GetResponseToGuess do
     end
   end
 
-  it 'should return the appropriate message if the input character is present in the word' do
+  context 'when the input character is present in the word' do
+    let(:is_valid_input){ true }
+    let(:character_input){'L'}
+    let(:game_state) { mock_game_state }
 
-    # Arrange
-    guess_validator = instance_double(GuessValidator, :is_valid_input => true)
-    sut = GetResponseToGuess.new(guess_validator, 'L', mock_game_state)
-
-    # Assert
-    expect(sut.call).to include('appears')
-
+    it 'indicates that the guess is succesful' do
+      expect(sut.call).to include('appears')
+    end
   end
 
-  it 'should return the appropriate message if the input character is not in the word' do
+  context '' do
+    it 'should return the appropriate message if the input character is not in the word' do
 
-    # Arrange
-    guess_validator = instance_double(GuessValidator, :is_valid_input => true)
-    sut = GetResponseToGuess.new(guess_validator, 'a', mock_game_state)
+      # Arrange
+      guess_validator = instance_double(GuessValidator, :is_valid_input => true)
+      sut = GetResponseToGuess.new(guess_validator, 'a', mock_game_state)
 
-    # Assert
-    expect(sut.call).to include("doesn't appear")
+      # Assert
+      expect(sut.call).to include("doesn't appear")
 
+    end
   end
 
   it 'should be case insensitive when checking if a character appears in the word' do
@@ -62,8 +63,11 @@ RSpec.describe GetResponseToGuess do
     guess_validator = instance_double(GuessValidator, :is_valid_input => true)
     sut = GetResponseToGuess.new(guess_validator, 'l', mock_game_state)
 
+    # Act
+    result = sut.call
+
     # Assert
-    expect(sut.call).to include('appears')
+    expect(result).to include('appears')
 
   end
 

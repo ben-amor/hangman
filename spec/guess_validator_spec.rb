@@ -1,4 +1,4 @@
-require 'rspec'
+require 'spec_helper'
 require 'guess_validator'
 
 describe GuessValidator do
@@ -14,7 +14,7 @@ describe GuessValidator do
 
   ['A', 'B'].each do |char|
     it 'should be case insensitive' do
-
+      byebug
       expect(guess_validator.is_valid_input(char)).to be_truthy
     end
   end
